@@ -1,0 +1,55 @@
+<link rel="import" href="../../../packages/polymer/polymer.html">
+<link rel="import" href="../../../packages/core_elements/core_list_dart.html">
+<link rel="import" href="album_form.html">
+
+<polymer-element name="album-browser">
+	<template>
+	    <style>
+	      .item 
+	      {
+	        box-sizing: border-box;
+	        border-bottom: 1px solid #ddd;
+	        padding: 5px;
+	        cursor: default;
+	        background-color: white;
+	        overflow: hidden;
+	      }
+	
+	      .selected 
+	      {
+	        background: silver;
+	      }
+	
+	      .title 
+	      {
+	        font-size: 12px;
+	      }
+	
+	      #album-form 
+	      {
+	        padding: 5px;
+	      }
+	    </style>
+	
+		<header class="header">
+			<h1>Album Browser</h1>
+		</header>
+		
+		<core-list-dart id="albums-list" 
+										data="{{albumBrowserModel.albums}}"
+										on-core-activate={{onSelectionChanged}}
+										style="height:250px" height="1">
+        <template>
+            <div class="{{ {item: true, selected: selected} }}">
+                <div class="title">{{model.artist}} - {{model.title}}</div>
+            </div>
+        </template>
+		</core-list-dart>
+		
+		<album-form id="album-form" 
+								albumFormModel="{{albumBrowserModel.albumFormModel}}">
+		</album-form>
+	</template>
+	
+	<script type="application/dart" src="album_browser.dart"></script>
+</polymer-element>
